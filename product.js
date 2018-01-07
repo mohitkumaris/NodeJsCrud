@@ -10,7 +10,16 @@ var ProductSchema = new Schema({
     title: String,
     price: Number,
     instock: Boolean,
-    photo: String,
+    photo: String
+   
+
+
 });
 
+/*
+ title: String,
+    price: Number,
+    instock: Boolean,
+    photo: String
+*/
 module.exports=mongoose.model("Product",ProductSchema);
