@@ -1,5 +1,8 @@
 
 var express=require("express");
+var async = require('async');
+var await = require('asyncawait/await');
+
 
 var router=express.Router();
 
@@ -16,30 +19,33 @@ next();
 
 });
 
-//save the data
-router.route('/products').post(function(req,res){
+//save multiple data the data
 
-   var p = new product();
-   var productsData=[];
-   for(var i=0; i<req.body.length;i++){
-    p.title=req.body[i].title;
-    p.price=req.body[i].price;
-    p.instock=req.body[i].instock;
-    p.photo=req.body[i].photo;
-    productsData.push(p);
-   }
+  function SaveMultipleData(req, res) {
+    {
+         var productArray=[];
+         productArray=req.body;
 
-    p.save(function(err){
+         for(var productData in productArray){
 
-       if(err)
-       {
-           res.send(err)
-       }
+             new product(productArray[productData])
+                 .save(function (err) {
 
-       res.send({message:"Product Saved"});
-    })
-  
-});
+                     if(err)
+                     {
+                         res.send(err)
+                     }
+                     res.send({message:"Products Saved"})
+                 })
+         }
+
+    }
+}
+
+
+router.route('/products').post(SaveMultipleData);
+
+
 
 //Get the data
 router.route('/products').get(function(req,res){

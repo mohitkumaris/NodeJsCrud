@@ -11,9 +11,6 @@ var ProductSchema = new Schema({
     price: Number,
     instock: Boolean,
     photo: String
-   
-
-
 });
 
 /*
