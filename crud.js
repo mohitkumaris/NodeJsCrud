@@ -1,7 +1,6 @@
 
 var express=require("express");
-var async = require('async');
-var await = require('asyncawait/await');
+
 
 
 var router=express.Router();
@@ -48,9 +47,9 @@ router.route('/products').post(SaveMultipleData);
 
 
 //Get the data
-router.route('/products').get(function(req,res){
+router.route('/products').get((req,res)=>{
 
-   product.find(function(err,products){
+   product.find((err,products)=>{
       
        if(err){
            res.send(err)
@@ -64,9 +63,9 @@ router.route('/products').get(function(req,res){
 
 //find by id
 
-router.route('/products/:product_id').get(function(req,res){
+router.route('/products/:product_id').get((req,res)=>{
 
-product.findById(req.params.product_id,function(err,products){
+product.findById(req.params.product_id,(err,products)=>{
 
 if(err){
 
@@ -81,9 +80,9 @@ res.send(products);
 
 // update product
 
-router.route('/products/:product_id').put(function(req,res){
+router.route('/products/:product_id').put((req,res)=>{
 
-product.findById(req.params.product_id,function(err,prod){
+product.findById(req.params.product_id,(err,prod)=>{
 
     if(err){
 
@@ -112,12 +111,12 @@ product.findById(req.params.product_id,function(err,prod){
 
 // delete
 
-router.route('/products/:product_id').delete(function(req,res){
+router.route('/products/:product_id').delete((req,res)=>{
 
     
 
 
-        product.remove({_id:req.params.product_id},function(err,prod){
+        product.remove({_id:req.params.product_id},(err,prod)=>{
             if(err){
 
                 res.send(err)
